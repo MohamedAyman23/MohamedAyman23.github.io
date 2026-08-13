@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  // Set the base path to match the GitHub repository name for correct asset loading
-  basePath: "/MohamedAyman23.github.io",
+  // No basePath needed — this is a user/org page (username.github.io),
+  // served at the domain root, not a project subpath.
 };
 
 export default nextConfig;
