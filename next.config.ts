@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   // Set the base path to match the GitHub repository name for correct asset loading
-  //basePath: "/MohamedAyman23.github.io",
+  basePath: "/MohamedAyman23.github.io",
 };
 
 export default nextConfig;
