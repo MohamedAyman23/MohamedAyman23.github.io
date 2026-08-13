@@ -32,7 +32,7 @@ export default function Hero() {
                         <p className="text-sm font-medium tracking-wider text-accent-1 uppercase">
                             Backend Engineer
                         </p>
-                        {/* ✅ Reduced size slightly + whitespace-nowrap forces all 3 words onto 1 line */}
+                        {/* Reduced size slightly + whitespace-nowrap forces all 3 words onto 1 line */}
                         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground whitespace-nowrap">
                             Mohamed Ayman Mohamed
                         </h1>
