@@ -1,26 +1,137 @@
 @import "tailwindcss";
 
+@theme {
+  --color-background: #09090b;
+  --color-foreground: #fafafa;
+  --color-muted: #a1a1aa;
+  --color-border: #27272a;
+  --color-surface: #18181b;
+  --color-surface-hover: #27272a;
+  --color-accent-1: #ec4899;
+  --color-accent-2: #06b6d4;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-background: #fafafa;
+  --color-foreground: #09090b;
+  --color-muted: #71717a;
+  --color-border: #e4e4e7;
+  --color-surface: #f4f4f5;
+  --color-surface-hover: #e4e4e7;
+  --color-accent-1: #ec4899;
+  --color-accent-2: #06b6d4;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  --color-background: #09090b;
+  --color-foreground: #fafafa;
+  --color-muted: #a1a1aa;
+  --color-border: #27272a;
+  --color-surface: #18181b;
+  --color-surface-hover: #27272a;
+  --color-accent-1: #ec4899;
+  --color-accent-2: #06b6d4;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+::selection {
+  background: var(--color-accent-1);
+  color: #ffffff;
+}
+
+section {
+  scroll-margin-top: 80px;
+}
+
+/* Custom Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animate-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animate-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animate-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animate-delay-500 {
+  animation-delay: 500ms;
+}
+
+/* --- Animated Card Glow Border --- */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.card-glow-border {
+  position: relative;
+}
+
+.card-glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  /* Controls the thickness of the light border */
+  border-radius: inherit;
+  /* Matches your rounded-3xl cards perfectly */
+  padding: 2px;
+  background: conic-gradient(from var(--angle), var(--color-accent-1), var(--color-accent-2), var(--color-accent-1));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: spin-glow 3s linear infinite;
+  opacity: 0;
+  /* Hidden by default */
+  transition: opacity 0.4s ease-in-out;
+  z-index: -1;
+  /* Puts it behind the card content */
+}
+
+.card-glow-border:hover::before {
+  opacity: 1;
+  /* Triggers the light border on hover */
+}
+
+@keyframes spin-glow {
+  to {
+    --angle: 360deg;
+  }
 }
